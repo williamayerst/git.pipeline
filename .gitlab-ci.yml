@@ -1,0 +1,26 @@
+stages: 
+  - rspec
+  - rubocop
+
+image: ruby:2.2
+
+services:
+  - postgres:9.3
+
+rspec:
+  stage: rspec
+  script:
+    - bundle install #--path=/cache
+    - bundle exec rspec
+  #cache:
+  #  paths:
+  #    - /cache
+
+rubocop:
+  stage: rubocop
+  script:
+    - bundle install #--path=/cache
+    - bundle exec rubocop
+  #cache:
+  #  paths:
+  #    - /cache
